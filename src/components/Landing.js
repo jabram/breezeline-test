@@ -37,8 +37,8 @@ export default function Landing() {
           <List>
             {data.todos.map((todo) => {
               return (
-                <ListItem>
-                  <Checkbox />
+                <ListItem key={todo.id}>
+                  <Checkbox checked={todo.completed} />
                   {todo.title}
                 </ListItem>
               );
