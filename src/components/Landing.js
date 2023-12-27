@@ -6,6 +6,7 @@ import {
   List,
   ListItem,
   ListItemButton,
+  ListItemText,
   Paper,
   Toolbar,
   Typography,
@@ -48,7 +49,15 @@ export default function Landing() {
                     }
                   >
                     <Checkbox checked={todo.completed} />
-                    {todo.title}
+                    <ListItemText
+                      sx={{
+                        textDecoration: todo.completed
+                          ? "line-through"
+                          : "none",
+                      }}
+                    >
+                      {todo.title}
+                    </ListItemText>
                   </ListItemButton>
                 </ListItem>
               );
