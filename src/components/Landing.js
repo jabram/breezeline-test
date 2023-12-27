@@ -1,23 +1,36 @@
+import { useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import {
   Box,
+  Button,
   Checkbox,
   CircularProgress,
+  Grid,
   List,
   ListItem,
   ListItemButton,
   ListItemText,
   Paper,
+  TextField,
   Toolbar,
   Typography,
 } from "@mui/material";
-import { TODOS_QUERY, TOGGLE_TODO } from "../todo_gql";
+import { ADD_TODO, TODOS_QUERY, TOGGLE_TODO } from "../todo_gql";
 
 export default function Landing() {
+  const [newTodo, setNewTodo] = useState("");
   const { loading, error, data } = useQuery(TODOS_QUERY);
   const [toggleCompleted] = useMutation(TOGGLE_TODO, {
     refetchQueries: [TODOS_QUERY],
   });
+  const [addTodo] = useMutation(ADD_TODO, {
+    refetchQueries: [TODOS_QUERY],
+  });
+
+  const handleAddTodo = () => {
+    addTodo({ variables: { title: newTodo } });
+    setNewTodo("");
+  };
 
   if (loading) {
     return (
@@ -63,6 +76,14 @@ export default function Landing() {
               );
             })}
           </List>
+          <Grid container>
+            <TextField
+              label="New Todo"
+              value={newTodo}
+              onChange={(e) => setNewTodo(e.target.value)}
+            />
+            <Button onClick={handleAddTodo}>Add</Button>
+          </Grid>
         </Paper>
       </Box>
     );

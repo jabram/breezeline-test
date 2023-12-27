@@ -15,3 +15,9 @@ export const TOGGLE_TODO = gql`
     toggleCompleted(todoId: $todoId)
   }
 `;
+
+export const ADD_TODO = gql`
+  mutation AddTodo($title: String!) {
+    addTodo(title: $title)
+  }
+`;
