@@ -1,0 +1,32 @@
+button.MuiButtonBase-root.Mui-selected {
+    color: white;
+}
+
+.MuiToolbar-root {
+    a.MuiButton-root, button.MuiButton-root {
+        color: #ffffff;
+        &.active {
+            color: #f2fb00;
+        }
+    }
+}
+
+.MuiDataGrid-booleanCell[data-value=false] {
+    display: none;
+}
+
+#home-link {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.green {
+    background-color: green;
+}
+
+.red {
+    background-color: red;
+}
+svg[role="logo"] {
+    height: 60px;
+}
