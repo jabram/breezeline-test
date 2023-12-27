@@ -1,18 +1,22 @@
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import {
   Box,
   Checkbox,
   CircularProgress,
   List,
   ListItem,
+  ListItemButton,
   Paper,
   Toolbar,
   Typography,
 } from "@mui/material";
-import { TODOS_QUERY } from "../todo_gql";
+import { TODOS_QUERY, TOGGLE_TODO } from "../todo_gql";
 
 export default function Landing() {
   const { loading, error, data } = useQuery(TODOS_QUERY);
+  const [toggleCompleted] = useMutation(TOGGLE_TODO, {
+    refetchQueries: [TODOS_QUERY],
+  });
 
   if (loading) {
     return (
@@ -37,9 +41,15 @@ export default function Landing() {
           <List>
             {data.todos.map((todo) => {
               return (
-                <ListItem key={todo.id}>
-                  <Checkbox checked={todo.completed} />
-                  {todo.title}
+                <ListItem disablePadding key={todo.id}>
+                  <ListItemButton
+                    onClick={() =>
+                      toggleCompleted({ variables: { todoId: todo.id } })
+                    }
+                  >
+                    <Checkbox checked={todo.completed} />
+                    {todo.title}
+                  </ListItemButton>
                 </ListItem>
               );
             })}
