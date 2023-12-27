@@ -1,32 +1,38 @@
 button.MuiButtonBase-root.Mui-selected {
-    color: white;
+  color: white;
 }
 
 .MuiToolbar-root {
-    a.MuiButton-root, button.MuiButton-root {
-        color: #ffffff;
-        &.active {
-            color: #f2fb00;
-        }
-    }
-}
-
-.MuiDataGrid-booleanCell[data-value=false] {
-    display: none;
-}
-
-#home-link {
+  a.MuiButton-root,
+  button.MuiButton-root {
     color: #ffffff;
-    text-decoration: none;
+    &.active {
+      color: #f2fb00;
+    }
+  }
+}
+
+.MuiDataGrid-booleanCell[data-value="false"] {
+  display: none;
+}
+
+.nav-link {
+  color: #ffffff;
+  text-decoration: none;
+  margin-right: 1rem;
+}
+
+.nav-link.active {
+  text-decoration: underline;
 }
 
 .green {
-    background-color: green;
+  background-color: green;
 }
 
 .red {
-    background-color: red;
+  background-color: red;
 }
 svg[role="logo"] {
-    height: 60px;
+  height: 60px;
 }
